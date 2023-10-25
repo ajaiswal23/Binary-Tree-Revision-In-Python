@@ -134,4 +134,26 @@ def dfs_in_recursive(node, dfs_array):
 
 inorder_traversal_recursive = dfs_in_recursive(a, []) # ['D', 'B', 'E', 'A', 'C', 'F']
 print("Inorder Traversal using recursion:",inorder_traversal_recursive)
+
+def dfs_in(node):
+    dfs_array = []
+    dfs_stack = Stack()
+    if node is None:
+        return
     
+    current = node
+    while True:
+        if current is not None:
+            dfs_stack.put(current)
+            current = current.left
+        elif dfs_stack.empty():
+            break
+        else:
+            current = dfs_stack.get()
+            dfs_array.append(current.value)
+            current = current.right
+
+    return dfs_array
+    
+inorder_traversal = dfs_in(a) # ['D', 'B', 'E', 'A', 'C', 'F']
+print("Inorder Traversal using stack:",inorder_traversal)
